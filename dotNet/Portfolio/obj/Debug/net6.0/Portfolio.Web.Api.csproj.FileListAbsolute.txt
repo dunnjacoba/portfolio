@@ -1,0 +1,7 @@
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio\obj\Debug\net6.0\Portfolio.Web.Api.csproj.AssemblyReference.cache
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio\obj\Debug\net6.0\Portfolio.Web.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio\obj\Debug\net6.0\Portfolio.Web.Api.AssemblyInfoInputs.cache
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio\obj\Debug\net6.0\Portfolio.Web.Api.AssemblyInfo.cs
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio\obj\Debug\net6.0\Portfolio.Web.Api.csproj.CoreCompileInputs.cache
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio\obj\Debug\net6.0\Portfolio.Web.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio\obj\Debug\net6.0\Portfolio.Web.Api.MvcApplicationPartsAssemblyInfo.cache

@@ -1,0 +1,5 @@
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio.Models\obj\Debug\net6.0\Portfolio.Models.csproj.AssemblyReference.cache
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio.Models\obj\Debug\net6.0\Portfolio.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio.Models\obj\Debug\net6.0\Portfolio.Models.AssemblyInfoInputs.cache
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio.Models\obj\Debug\net6.0\Portfolio.Models.AssemblyInfo.cs
+C:\Users\Jacob Dunn\OneDrive\Desktop\portfolio\portfolio\dotNet\Portfolio.Models\obj\Debug\net6.0\Portfolio.Models.csproj.CoreCompileInputs.cache
