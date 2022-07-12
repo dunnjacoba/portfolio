@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import ChatUsers from './ChatUsers';
 import ChatArea from './ChatArea';
 import * as helper from '../../../services/serviceHelpers';
-import debug from 'sabio-debug';
+import debug from 'debug';
 import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 
 const _logger = debug.extend('ChatApp');
