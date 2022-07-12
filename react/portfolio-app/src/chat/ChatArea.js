@@ -3,7 +3,7 @@ import { chatAreaPropTypes } from '../../../schema/chatSchema';
 import { GrSend } from 'react-icons/gr';
 import { Card, Row, Col, Form } from 'react-bootstrap';
 import SimpleBar from 'simplebar-react';
-import logger from 'sabio-debug';
+import logger from 'debug';
 import Loader from './Loader';
 import { messagesService } from '../../../services/messagesService';
 import UserMessage from '../../../components/messenges/UserMessage';
