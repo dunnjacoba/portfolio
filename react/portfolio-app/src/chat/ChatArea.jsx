@@ -134,7 +134,7 @@ const ChatArea = (props) => {
                                         <div className="col-sm-auto">
                                             <div className="btn-group">
                                                 <button
-                                                    onClick={props.SendMessage(currentUser, messageToSend)}
+                                                    onClick={props.SendMessage(messageToSend)}
                                                     type="submit"
                                                     className="btn btn-success chat-send btn-block">
                                                     <GrSend />
