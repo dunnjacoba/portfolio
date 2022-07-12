@@ -3,7 +3,7 @@ import { chatAreaPropTypes } from '../../../schema/chatSchema';
 import { GrSend } from 'react-icons/gr';
 import { Card, Row, Col, Form } from 'react-bootstrap';
 import SimpleBar from 'simplebar-react';
-import logger from 'sabio-debug';
+import logger from 'debug';
 import Loader from './Loader';
 import { messagesService } from '../../../services/messagesService';
 import UserMessage from '../../../components/messenges/UserMessage';
@@ -58,11 +58,6 @@ const ChatArea = (props) => {
         getMessagesForUser();
     }, [getMessagesForUser]);
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     sendMessage();
-    // };
-
     const handleChange = (e) => {
         const thisMessage = e.target.value;
         setMessageToSend((prevState) => {
@@ -74,28 +69,28 @@ const ChatArea = (props) => {
         });
     };
 
-    // const sendMessage = () => {
-    //     props.messageChat(messageToSend.recipientId, messageToSend).then(addMessageSuccess).catch(addMessageErr); //messagesService.addMessage(messageToSend)
-    // };
+    const sendMessage = () => {
+        props.messageChat(messageToSend.recipientId, messageToSend).then(addMessageSuccess).catch(addMessageErr); //messagesService.addMessage(messageToSend)
+    };
 
-    // const addMessageSuccess = (response) => {
-    //     _logger(response);
-    //     resetField();
-    // };
+    const addMessageSuccess = (response) => {
+        _logger(response);
+        resetField();
+    };
 
-    // const resetField = () => {
-    //     setMessageToSend((prevState) => {
-    //         let cm = { ...prevState };
-    //         cm.message = '';
-    //         cm.senderId = currentUser.id;
-    //         cm.recipientId = props.selectedUser.id;
-    //         return cm;
-    //     });
-    // };
+    const resetField = () => {
+        setMessageToSend((prevState) => {
+            let cm = { ...prevState };
+            cm.message = '';
+            cm.senderId = currentUser.id;
+            cm.recipientId = props.selectedUser.id;
+            return cm;
+        });
+    };
 
-    // const addMessageErr = (err) => {
-    //     _logger(err);
-    // };
+    const addMessageErr = (err) => {
+        _logger(err);
+    };
     const allMessages = () => {
         messagesService.getAllMessages(0, 100).then(onAllMessagesSuccess).catch(onAllMessagesErr);
     };
