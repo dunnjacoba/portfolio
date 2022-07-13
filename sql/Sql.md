@@ -96,7 +96,8 @@ BEGIN
 
 END
 
-T-SQL paginated response with search parameters:
+**T-SQL paginated response with search parameters:**
+
 ALTER proc [dbo].[Friends_Search_PaginationV3_Trans]
 @PageIndex int
 , @PageSize int
