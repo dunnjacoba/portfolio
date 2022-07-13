@@ -1,4 +1,4 @@
-Simple paginated request :
+**Simple paginated request :**
 
 ALTER proc [dbo].[Messages_GetBySenderConversation]
 @PageIndex int
@@ -40,7 +40,8 @@ DECLARE @offset int = @PageIndex _ @PageSize
     	OFFSET @offSet Rows
     	FETCH NEXT @PageSize Rows ONLY
 
-Select using integer with subquery:
+**Select using integer with subquery:**
+
 ALTER PROC [dbo].[EventInformation_SelectById]
 @Id int
 AS
@@ -184,6 +185,175 @@ BEGIN Catch
 
 -- to just get the error thrown and see the bad news as an exception
 THROW
+
+End Catch
+
+SET XACT_ABORT OFF
+
+**Insert utilizing UDTs:**
+
+ALTER   proc [dbo].[Friends_InsertV3_Trans]
+         @Title nvarchar(50)
+		,@Bio nvarchar(50)
+		,@Summary nvarchar(50)
+		,@Headline nvarchar(50)
+		,@Slug nvarchar(50)
+		,@StatusId int		
+		,@TypeId int
+		,@PrimaryImageUrl nvarchar(max)
+		,@UserId int
+		,@Skills dbo.Skills_V2 READONLY
+		,@Id int OUTPUT
+
+		
+AS
+
+SET XACT_ABORT ON
+
+Declare @Tran nvarchar(50)  = 'Friend_InsertV3_Trans'
+/* ---Test Code ---
+
+Declare @Id int = 0
+					,@Skills dbo.Skills_V2
+
+			Insert Into @Skills (Id, Name)
+				Values (3, 'Making Up Games')
+			Insert Into @Skills (Id, Name)
+				Values (4, 'JavaScript')
+			Insert Into @Skills (Id, Name)
+				Values (5, 'Telekenesis')
+		
+
+			Declare @Title nvarchar(50) = 'Banjo'
+					,@Bio nvarchar(50) = 'Australia, has never been the same.'
+					,@Summary nvarchar(50) = 'Lives fully'
+					,@Headline nvarchar(50) = 'Bingos Classmate'
+					,@Slug nvarchar(50) = 'banjo@pincer.au'
+					,@StatusId int = 1
+					,@TypeId int = 1
+					,@PrimaryImageUrl nvarchar(max) = 'https://www.bluey.tv/wp-content/uploads/2019/04/char-bluey@2x.png'
+					,@UserId int = 123324
+
+
+Execute Friends_InsertV3_Trans @Title 
+								,@Bio 
+								,@Summary 
+								,@Headline 
+								,@Slug 
+								,@StatusId
+								,@TypeId 
+								,@PrimaryImageUrl 
+								,@UserId 
+								,@Skills dbo.Skills_V2 
+								,@Id OUTPUT
+
+
+*/
+
+BEGIN TRY
+
+BEGIN Transaction @Tran
+
+	
+					Declare @PrimaryImageId int		
+			,@FriendId int
+			,@SkillId int
+			
+
+			INSERT INTO [dbo].Images
+							([TypeId]
+							,[Url])
+
+			VALUES 
+							(@TypeId
+							,@PrimaryImageUrl)
+
+							SET @PrimaryImageId = SCOPE_IDENTITY() 
+
+			INSERT INTO [dbo].[Friends]
+							([Title]
+							,[Bio]
+							,[Summary]
+							,[Headline]
+							,[Slug]
+							,[StatusId]
+							,[PrimaryImageId]
+							,[UserId])
+
+			VALUES
+         
+							(@Title
+							,@Bio
+							,@Summary
+							,@Headline
+							,@Slug
+							,@StatusId	
+							,@PrimaryImageId
+							,@UserId)
+
+			  SET @FriendId = SCOPE_IDENTITY()
+
+			 INSERT INTO dbo.Skills
+							([Name])
+
+			 Select sk.[Name]
+			 From @Skills AS sk
+			 Where not exists (Select s.Id
+									  ,s.[Name]
+								FROM dbo.Skills as s
+								WHERE s.[Name] = sk.[Name])
+
+			 SET @SkillId = SCOPE_IDENTITY()
+			
+			INSERT INTO dbo.FriendSkills
+
+							(SkillId
+							, FriendId)
+
+			Values
+							(@SkillId,
+							@FriendId)
+ 
+			Select *
+			FROM dbo.Skills
+	
+			Select *
+			FROM dbo.Friends
+
+			Select *
+			FROM @Skills
+	
+	Commit Transaction @Tran
+
+END TRY
+BEGIN Catch
+
+    IF (XACT_STATE()) = -1
+    BEGIN
+        PRINT 'The transaction is in an uncommittable state.' +
+              ' Rolling back transaction.'
+        ROLLBACK TRANSACTION @Tran;;
+    END;
+
+    -- Test whether the transaction is active and valid.
+    IF (XACT_STATE()) = 1
+    BEGIN
+        PRINT 'The transaction is committable.' +
+              ' Committing transaction.'
+        COMMIT TRANSACTION @Tran;;
+    END;
+
+        -- If you want to see error info
+       -- SELECT
+        --ERROR_NUMBER() AS ErrorNumber,
+        --ERROR_SEVERITY() AS ErrorSeverity,
+        --ERROR_STATE() AS ErrorState,
+       -- ERROR_PROCEDURE() AS ErrorProcedure,
+       -- ERROR_LINE() AS ErrorLine,
+       -- ERROR_MESSAGE() AS ErrorMessage
+
+-- to just get the error thrown and see the bad news as an exception
+    THROW
 
 End Catch
 
