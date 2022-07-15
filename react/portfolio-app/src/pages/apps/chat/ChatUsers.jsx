@@ -28,7 +28,7 @@ const ChatUsers = (props) => {
   const onGetProfilesSuccess = (response) => {
     setUser(() => {
       let ud = [...user];
-      ud = response.data.item.pagedItems;
+      ud = response.item.pagedItems;
       return ud;
     });
   };

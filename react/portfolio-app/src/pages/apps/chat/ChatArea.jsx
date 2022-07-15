@@ -77,7 +77,7 @@ const ChatArea = (props) => {
   const onGetMessagesSuccess = (response) => {
     setLoading(true);
     setTimeout(() => {
-      setMessages(response.item.pagedItems);
+      setMessages(response.pagedItems);
       setLoading(false);
     }, 650);
   };
