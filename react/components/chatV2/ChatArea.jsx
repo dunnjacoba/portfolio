@@ -6,7 +6,7 @@ import SimpleBar from "simplebar-react";
 import logger from "debug";
 import Loader from "./Loader";
 import { messagesService } from "../../../services/messagesService";
-import UserMessage from "../../../components/messages/UserMessage";
+import UserMessage from "../messages/UserMessage";
 import ContextHolder from "../../../helpers/ContextHolder";
 import userProfileServices from "../../../services/userProfileSerivce";
 
